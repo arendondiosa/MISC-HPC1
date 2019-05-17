@@ -1,6 +1,7 @@
 from multiprocessing import Process, Lock, Array
 import random
 import time
+import sys
 
 def CalculadorMatriz(Matriz1, Matriz2, Contador, Tamano_Matriz, resultado, lock):  #Me llega la matriz1 la matriz 2 y el contador que es el numero de la fila que se esta ejecutando en la linea 93
 	i=0
@@ -25,8 +26,9 @@ if __name__ == '__main__':
 	Matriz_Resultante = []
 	resultado=[]  #matriz global del resultado
 	procesos=[]
-	Tamano_Matriz = int(input("Tamano de la matrizes cuadradas: "))
-	#De la linea 73 a la linea 84 hace exactamente lo mismo que de las 12 a la 23 no hay diferencias
+	filename, Tamano_Matriz, test_iterations = sys.argv 
+	Tamano_Matriz = int(Tamano_Matriz)	
+	
 	for i in range(Tamano_Matriz):
 		Matriz1.append([0]*Tamano_Matriz)
 
@@ -45,24 +47,30 @@ if __name__ == '__main__':
 
 	resultado=list(range(Tamano_Matriz*Tamano_Matriz))
 	resultado=Array("i", resultado)
-	print(Matriz1)
-	print(Matriz2)
-	Inicio = time.time()
+	# print(Matriz1)
+	# print(Matriz2)
 
+	total_time = 0
 
-	for i in range(Tamano_Matriz):
-		proceso=Process(target=CalculadorMatriz, args=([Matriz1, Matriz2, i, Tamano_Matriz, resultado, Lock()]))
-		proceso.start()
-		procesos.append(proceso)
+	for i in range(int(test_iterations)):
+		Inicio = time.time()
 
-	for i in procesos:
-		i.join()
-	
+		for i in range(Tamano_Matriz):
+			proceso=Process(target=CalculadorMatriz, args=([Matriz1, Matriz2, i, Tamano_Matriz, resultado, Lock()]))
+			proceso.start()
+			procesos.append(proceso)
 
-	Final = time.time()
-	Tiempo = Final-Inicio
+		for i in procesos:
+			i.join()
+		
 
-	print(Tiempo)
+		Final = time.time()
+		Tiempo = Final-Inicio
+		total_time += Tiempo
+
+		# print(Matriz_Resultante)
+		print(Tiempo)
+	print('Total time: ', total_time / 10)
 
 
 

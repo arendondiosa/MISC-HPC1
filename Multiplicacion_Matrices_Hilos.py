@@ -1,6 +1,7 @@
 import threading
 import random
 import time
+import sys
 
 resultado=[]  #matriz global del resultado
 def CalculadorMatriz(Matriz1, Matriz2, Contador, Tamano_Matriz):  #Me llega la matriz1 la matriz 2 y el contador que es el numero de la fila que se esta ejecutando en la linea 93
@@ -24,7 +25,8 @@ if __name__ == '__main__':
 	Matriz2 = []
 	Matriz_Resultante = []
 
-	Tamano_Matriz = int(input("Tamano de la matrizes cuadradas: "))
+	filename, Tamano_Matriz = sys.argv 
+	Tamano_Matriz = int(Tamano_Matriz)
 	#De la linea 73 a la linea 84 hace exactamente lo mismo que de las 12 a la 23 no hay diferencias
 	for i in range(Tamano_Matriz):
 		Matriz1.append([0]*Tamano_Matriz)
@@ -42,8 +44,10 @@ if __name__ == '__main__':
 			numero = random.randrange(0,10)
 			Matriz2[i][j] = numero
 
-	print(Matriz1)
-	print(Matriz2)
+	# print(Matriz1)
+	# print(Matriz2)
+
+for i in range(int(test_iterations)):
 	Inicio = time.time()
 
 	for i in range(len(Matriz1)): #va a multiplicar de fila en fila de la matriz1 a las columnas de la matriz2
@@ -59,7 +63,7 @@ if __name__ == '__main__':
 
 	Final = time.time()
 	Tiempo = Final-Inicio
+	total_time += Tiempo
 
-	print(resultado)   #Me imprimira la matiz global resultado de las operaciones
-	print("Impresionnnnnnnnnnnnnnnnnnnnnn")
+	# print(Matriz_Resultante)
 	print(Tiempo)
