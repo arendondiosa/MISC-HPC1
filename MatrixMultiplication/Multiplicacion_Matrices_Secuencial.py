@@ -54,5 +54,5 @@ for i in range(int(test_iterations)):
 	total_time += Tiempo
 
 	# print(Matriz_Resultante)
-	print(Tiempo)
-print('Total time: ', total_time / 10)
+	# print(Tiempo)
+print('Total time: ', total_time / int(test_iterations))

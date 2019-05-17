@@ -47,7 +47,6 @@ if __name__ == '__main__':
 	# print(Matriz1)
 	# print(Matriz2)
 
-for i in range(int(test_iterations)):
 	Inicio = time.time()
 
 	for i in range(len(Matriz1)): #va a multiplicar de fila en fila de la matriz1 a las columnas de la matriz2
@@ -63,7 +62,6 @@ for i in range(int(test_iterations)):
 
 	Final = time.time()
 	Tiempo = Final-Inicio
-	total_time += Tiempo
 
 	# print(Matriz_Resultante)
 	print(Tiempo)
