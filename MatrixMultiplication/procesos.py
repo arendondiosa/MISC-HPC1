@@ -70,7 +70,7 @@ if __name__ == '__main__':
 
 		# print(Matriz_Resultante)
 		# print(Tiempo)
-	print('Total time: ', total_time / int(test_iterations))
+	print(total_time / int(test_iterations))
 
 
 

@@ -2,9 +2,13 @@ import random
 import time
 import sys
 
+def trans(M):
+    return [[M[j][i] for j in range(len(M))] for i in range(len(M[0]))]
+
 Fila = []
 Matriz1 = []
 Matriz2 = []
+Matriz2T = []
 Matriz_Resultante = []
 
 filename, Tamano_Matriz, test_iterations = sys.argv 
@@ -26,8 +30,16 @@ for i in range(0, Tamano_Matriz):  #Estas sentencias for me llenaran la matriz2 
 		numero = random.randrange(0,10)
 		Matriz2[i][j] = numero
 
-# print(Matriz1)
-# print(Matriz2)
+#Matriz1=[[6, 1], [1, 4]]
+#Matriz2=[[3, 7], [9, 2]] 
+
+#print(Matriz1)
+#print(Matriz2)
+#print("hola")
+Matriz2=trans(Matriz2)
+#print(Matriz2)
+
+#print("hola")
 #De aqui en adelante se calculara secuencialmente la multiplicacion de la matriz1 por la matriz2
 
 total_time = 0
@@ -41,7 +53,8 @@ for i in range(int(test_iterations)):
 			j=0
 			Acumulador = 0
 			while(j < Tamano_Matriz):
-				Acumulador = Acumulador + (Matriz1[k][j] * Matriz2[j][i])
+				Acumulador = Acumulador + (Matriz1[k][j] * Matriz2[i][j])
+				#Acumulador = Acumulador + (Matriz1[k][j] * Matriz2[j][i])
 				j = j+1
 			Fila.append(Acumulador)
 			i = i+1
@@ -53,6 +66,7 @@ for i in range(int(test_iterations)):
 	Tiempo = Final-Inicio
 	total_time += Tiempo
 
-	# print(Matriz_Resultante)
+	#print(Matriz_Resultante)
+#print(Matriz_Resultante)
 	# print(Tiempo)
-print('Total time: ', total_time / int(test_iterations))
+print(total_time / int(test_iterations))
