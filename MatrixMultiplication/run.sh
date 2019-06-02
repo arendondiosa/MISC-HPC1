@@ -1,10 +1,8 @@
 #!/bin/bash
 
-matrix_limits=(1 10 100)
+matrix_limits=(50 100 150 200 250 300 400 500 1000 2000)
 
 iter=""
-
-echo $iter
 
 if [ $2 ]
 then
