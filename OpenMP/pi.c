@@ -5,11 +5,11 @@
 static long num_steps = 1000000000;
 double step;
 
-// #define NUM_THREADS 2
+//#define NUM_THREADS 2
 
 int main(int argc, char **argv)
 {
-  int i, nThreads, NUM_THREADS = argv[1];
+  int i, nThreads, NUM_THREADS = atoi(argv[1]);
   double pi, sum[NUM_THREADS], start = 0, time_omp = 0;
   ;
 
@@ -17,7 +17,8 @@ int main(int argc, char **argv)
   step = 1.0 / (double)num_steps;
 
   omp_set_num_threads(NUM_THREADS);
-  #pragma omp parallel {
+  #pragma omp parallel 
+  {
     int i, ID, nThreadsInternal;
     double x;
     ID = omp_get_thread_num();
