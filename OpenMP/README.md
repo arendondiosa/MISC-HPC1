@@ -1,5 +1,9 @@
 # Open MP
 
 ```
-./run.sh <num_test>
+./run.sh <filename> <num_test>
+```
+
+```
+./run.sh pi.c 10
 ```
