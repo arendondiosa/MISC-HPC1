@@ -35,7 +35,7 @@ int main(int argc, char **argv)
   }
 
   for (i = 0, pi = 0.0; i < nThreads; i++)
-    pi += sum[i] * step;
+    pi += sum[i][0] * step;
 
   time_omp = omp_get_wtime() - start;
   // printf("%f\n", pi);
