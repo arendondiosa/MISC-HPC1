@@ -6,7 +6,7 @@ echo "Running $1"
 
 if [ $3 == "gcc" ]
 then
-    $3 -fopenmp $1
+    $3 -fopenmp -O$4 $1
 elif [ $3 == "icc" ]
 then
     $3 -qopenmp $1
