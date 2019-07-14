@@ -58,7 +58,7 @@ void write_solution(int n, double* u, const char* fname)
 int main(int argc, char** argv)
 {
     int i;
-    int n, nsteps,NUM_THREADS = atoi(argv[3]);;
+    int n, nsteps,NUM_THREADS = atoi(argv[3]);
     double* u;
     double* f;
     double h,start = 0, time_omp = 0;
@@ -68,7 +68,6 @@ int main(int argc, char** argv)
     /* Process arguments */
     n      = (argc > 1) ? atoi(argv[1]) : 100;
     nsteps = (argc > 2) ? atoi(argv[2]) : 100;
-    fname  = (argc > 3) ? argv[3] : NULL;
     h      = 1.0/n;
 
     /* Allocate and initialize arrays */

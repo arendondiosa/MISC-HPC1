@@ -1,1 +1,13 @@
-icc -DUSE_CLOCK -O3 jacobi1d.c timing.c -o jacobi1d
+# Open MP
+
+```
+./run.sh <filename> <num_test> <compilador> <dimension>
+```
+
+```
+./run.sh pi.c 10 gcc 100
+```
+
+```
+./run.sh pi_pad.c 10 icc 100
+```
