@@ -25,13 +25,15 @@ void jacobi(int nsweeps, int n, double* u, double* f)
     /* Fill boundary conditions into utmp */
     utmp[0] = u[0];
     utmp[n] = u[n];
-
+    #pragma omp parallel for 
     for (sweep = 0; sweep < nsweeps; sweep += 2) {
-        //#pragma omp parallel for
+        #pragma omp parallel for
         /* Old data in u; new data in utmp */
         for (i = 1; i < n; ++i)
             utmp[i] = (u[i-1] + u[i+1] + h2*f[i])/2;
-        
+	
+
+	#pragma omp parallel for        
         /* Old data in utmp; new data in u */
         for (i = 1; i < n; ++i)
             u[i] = (utmp[i-1] + utmp[i+1] + h2*f[i])/2;
@@ -46,6 +48,7 @@ void write_solution(int n, double* u, const char* fname)
     int i;
     double h = 1.0 / n;
     FILE* fp = fopen(fname, "w+");
+    #pragma omp parallel for
     for (i = 0; i <= n; ++i)
         fprintf(fp, "%g %g\n", i*h, u[i]);
     fclose(fp);
@@ -55,13 +58,13 @@ void write_solution(int n, double* u, const char* fname)
 int main(int argc, char** argv)
 {
     int i;
-    int n, nsteps;
+    int n, nsteps,NUM_THREADS = atoi(argv[3]);;
     double* u;
     double* f;
     double h,start = 0, time_omp = 0;
     timing_t tstart, tend;
     char* fname;
-
+    omp_set_num_threads(NUM_THREADS);
     /* Process arguments */
     n      = (argc > 1) ? atoi(argv[1]) : 100;
     nsteps = (argc > 2) ? atoi(argv[2]) : 100;
